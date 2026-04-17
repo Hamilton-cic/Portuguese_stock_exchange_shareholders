@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(\"na_project/Scripts/python.exe\" -c \"import requests; r = requests.get\\('https://live.euronext.com/pt/product/equities/PTALT0AE0002-XLIS/company-information', headers={'User-Agent': 'Mozilla/5.0', 'Accept-Language': 'pt-PT,pt;q=0.9'}\\); print\\(r.status_code\\); print\\(r.text[:3000]\\)\")",
-      "Bash(\"na_project/Scripts/pip.exe\" list:*)"
+      "Bash(\"na_project/Scripts/pip.exe\" list:*)",
+      "Bash(grep -i \"\\\\.py$\")",
+      "Bash(grep -i \"\\\\.ipynb$\")"
     ]
   }
 }

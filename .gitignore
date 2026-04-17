@@ -12,3 +12,10 @@ na_project/
 
 #AI
 .claude
+
+# Local secrets and generated pipeline artifacts
+.env
+txt_output/
+json_members/
+board_extraction_log.csv
+pdf_company_mapping.csv

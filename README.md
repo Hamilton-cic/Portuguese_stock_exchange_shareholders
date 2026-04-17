@@ -124,6 +124,18 @@ nuno_amado, bcp, 1, board, Chairman 2022–2025
 pip install networkx pandas matplotlib seaborn pdfplumber openpyxl
 ```
 
+### Board extraction pipeline
+
+The repository now includes a PDF-to-board-members pipeline for the 2024 governance reports.
+
+Set your Gemini key in a local environment variable before running Pass 2:
+
+```bash
+set GEMINI_API_KEY=your_key_here
+```
+
+Do not commit `.env` or other local secret files.
+
 ---
 
 ## Graph Construction
