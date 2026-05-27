@@ -33,6 +33,36 @@ DEFAULT_LOG_PATH = DEFAULT_PDF_DIR / "board_extraction_log.csv"
 DEFAULT_DATASET_PATH = Path(__file__).resolve().parent / "dataset.csv"
 DEFAULT_EDGES_PATH = Path(__file__).resolve().parent / "edges.csv"
 
+
+def get_year_paths(year: int | None) -> dict[str, Path]:
+    """Return all file/directory paths for a given year.
+
+    When year is None, returns the 2024 defaults (backward-compatible).
+    When year is given (e.g. 2018), returns year-specific paths under
+    E:\\Sociedade_dados\\{year}\\ so each year's data is isolated.
+    """
+    project_dir = Path(__file__).resolve().parent
+    if year is None:
+        return {
+            "pdf_dir": DEFAULT_PDF_DIR,
+            "txt_dir": DEFAULT_TXT_DIR,
+            "json_dir": DEFAULT_JSON_DIR,
+            "mapping": DEFAULT_MAPPING_PATH,
+            "log": DEFAULT_LOG_PATH,
+            "dataset": DEFAULT_DATASET_PATH,
+            "edges": DEFAULT_EDGES_PATH,
+        }
+    year_dir = DEFAULT_PDF_DIR / str(year)
+    return {
+        "pdf_dir": year_dir / "pdfs",
+        "txt_dir": year_dir / "txt_output",
+        "json_dir": year_dir / "json_members",
+        "mapping": year_dir / "pdf_company_mapping.csv",
+        "log": year_dir / "board_extraction_log.csv",
+        "dataset": project_dir / f"dataset_{year}.csv",
+        "edges": project_dir / f"edges_{year}.csv",
+    }
+
 NEW_COMPANY_LABELS = {
     "fidelidade": "Fidelidade",
     "grupo_jose_de_mello": "Grupo José de Mello",
@@ -57,10 +87,14 @@ def normalize_for_match(value: str) -> str:
 
 
 def load_dataset(path: Path = DEFAULT_DATASET_PATH) -> pd.DataFrame:
+    if not Path(path).exists():
+        return pd.DataFrame(columns=["id", "label", "type"])
     return pd.read_csv(path)
 
 
 def load_edges(path: Path = DEFAULT_EDGES_PATH) -> pd.DataFrame:
+    if not Path(path).exists():
+        return pd.DataFrame(columns=["source", "target", "weight"])
     return pd.read_csv(path)
 
 
@@ -125,26 +159,38 @@ def create_mapping_from_pdfs(
     return mapping
 
 
-def extract_pdf_text(pdf_path: Path) -> str:
-    """Extract all text and tables from a PDF into a structured plain-text payload."""
+def _extract_pdf_pages(pdf_obj) -> str:
+    """Shared page-extraction logic for both file-path and in-memory PDF objects."""
     parts: list[str] = []
-    with pdfplumber.open(pdf_path) as pdf:
-        for page_number, page in enumerate(pdf.pages, start=1):
-            parts.append(f"=== PAGE {page_number} ===")
-            text = page.extract_text() or ""
-            text = text.replace("\x00", " ").strip()
-            if text:
-                parts.append(text)
-            tables = page.extract_tables() or []
-            for table_index, table in enumerate(tables, start=1):
-                parts.append(f"--- TABLE {page_number}.{table_index} ---")
-                for row in table:
-                    if not row:
-                        continue
-                    cells = [str(cell).strip() if cell is not None else "" for cell in row]
-                    parts.append(" | ".join(cells))
-            parts.append("")
+    for page_number, page in enumerate(pdf_obj.pages, start=1):
+        parts.append(f"=== PAGE {page_number} ===")
+        text = page.extract_text() or ""
+        text = text.replace("\x00", " ").strip()
+        if text:
+            parts.append(text)
+        tables = page.extract_tables() or []
+        for table_index, table in enumerate(tables, start=1):
+            parts.append(f"--- TABLE {page_number}.{table_index} ---")
+            for row in table:
+                if not row:
+                    continue
+                cells = [str(cell).strip() if cell is not None else "" for cell in row]
+                parts.append(" | ".join(cells))
+        parts.append("")
     return "\n".join(parts).strip() + "\n"
+
+
+def extract_pdf_text(pdf_path: Path) -> str:
+    """Extract all text and tables from a PDF file on disk."""
+    with pdfplumber.open(pdf_path) as pdf:
+        return _extract_pdf_pages(pdf)
+
+
+def extract_pdf_text_from_bytes(pdf_bytes: bytes) -> str:
+    """Extract all text and tables from PDF bytes in memory (no disk I/O)."""
+    import io
+    with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+        return _extract_pdf_pages(pdf)
 
 
 def extract_json_object(text: str) -> dict[str, Any]:

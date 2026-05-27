@@ -7,6 +7,10 @@ Strategy (full rebuild of board-member data):
    entries) and print a warning so they can be reprocessed with pass2.
 4. For each accepted JSON, clean each member name and upsert into dataset /
    edges, preserving all company nodes and non-board edges unchanged.
+
+Pass --year YYYY to write year-specific output files (dataset_YYYY.csv /
+edges_YYYY.csv) instead of the shared 2024 defaults.  Year-specific runs
+start from scratch rather than rebuilding over existing data.
 """
 
 from __future__ import annotations
@@ -18,16 +22,12 @@ from pathlib import Path
 import pandas as pd
 
 from board_pipeline import (
-    DEFAULT_DATASET_PATH,
-    DEFAULT_EDGES_PATH,
-    DEFAULT_JSON_DIR,
-    DEFAULT_LOG_PATH,
-    DEFAULT_MAPPING_PATH,
     _clean_member_name,
     _members_have_quality_issues,
     canonical_member_id,
     canonical_weight,
     ensure_company_nodes,
+    get_year_paths,
     load_dataset,
     load_edges,
     load_json_members,
@@ -39,24 +39,34 @@ from board_pipeline import (
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Rebuild board members in dataset/edges")
-    parser.add_argument("--dataset", default=str(DEFAULT_DATASET_PATH))
-    parser.add_argument("--edges", default=str(DEFAULT_EDGES_PATH))
-    parser.add_argument("--json-dir", default=str(DEFAULT_JSON_DIR))
-    parser.add_argument("--mapping", default=str(DEFAULT_MAPPING_PATH))
-    parser.add_argument("--log", default=str(DEFAULT_LOG_PATH))
+    parser.add_argument("--year", type=int, default=None, help="Year to process (e.g. 2018). Omit for 2024 defaults.")
+    parser.add_argument("--dataset", default=None)
+    parser.add_argument("--edges", default=None)
+    parser.add_argument("--json-dir", default=None)
+    parser.add_argument("--mapping", default=None)
+    parser.add_argument("--log", default=None)
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    dataset_path = Path(args.dataset)
-    edges_path = Path(args.edges)
-    json_dir = Path(args.json_dir)
-    mapping = read_mapping(Path(args.mapping))
+    paths = get_year_paths(args.year)
+    dataset_path = Path(args.dataset) if args.dataset else paths["dataset"]
+    edges_path = Path(args.edges) if args.edges else paths["edges"]
+    json_dir = Path(args.json_dir) if args.json_dir else paths["json_dir"]
+    mapping_path = Path(args.mapping) if args.mapping else paths["mapping"]
+    log_path = Path(args.log) if args.log else paths["log"]
+
+    mapping = read_mapping(mapping_path)
     mapping_by_pdf = {row.pdf_filename: row.company_id for row in mapping.itertuples(index=False)}
 
-    dataset = ensure_company_nodes(load_dataset(dataset_path))
-    edges = load_edges(edges_path)
+    if args.year is not None:
+        # Year-specific run: build from scratch (no existing board data to preserve)
+        dataset = ensure_company_nodes(pd.DataFrame(columns=["id", "label", "type"]))
+        edges = pd.DataFrame(columns=["source", "target", "weight"])
+    else:
+        dataset = ensure_company_nodes(load_dataset(dataset_path))
+        edges = load_edges(edges_path)
 
     # ------------------------------------------------------------------
     # Step 1 — strip board-member data so we rebuild from scratch with
@@ -205,7 +215,7 @@ def main() -> int:
 
     dataset.to_csv(dataset_path, index=False)
     edges.to_csv(edges_path, index=False)
-    pd.DataFrame(log_rows).to_csv(args.log, index=False)
+    pd.DataFrame(log_rows).to_csv(log_path, index=False)
 
     person_final = int((dataset["type"] == "person").sum())
     company_final = int((dataset["type"] == "company").sum())
@@ -214,9 +224,9 @@ def main() -> int:
     print(f"=== Resumo ===")
     print(f"JSONs aceites:  {accepted}")
     print(f"JSONs ignorados (qualidade): {skipped_quality}  (corre pass2 para corrigir)")
-    print(f"dataset.csv: {len(dataset)} linhas ({company_final} empresas, {person_final} pessoas)")
-    print(f"edges.csv:   {len(edges)} arestas")
-    print(f"log:         {args.log}")
+    print(f"dataset:     {dataset_path} ({company_final} empresas, {person_final} pessoas)")
+    print(f"edges:       {edges_path} ({len(edges)} arestas)")
+    print(f"log:         {log_path}")
     return 0
 
 

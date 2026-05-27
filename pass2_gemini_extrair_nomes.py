@@ -1,4 +1,8 @@
-"""Use Gemini Flash to extract Conselho de Administração members from TXT files."""
+"""Use Gemini to extract Conselho de Administração members from TXT files.
+
+Pass --year YYYY to process a specific year's subdirectory instead of the
+2024 defaults (e.g. E:\\Sociedade_dados\\2018\\txt_output).
+"""
 
 from __future__ import annotations
 
@@ -9,10 +13,8 @@ import time
 from pathlib import Path
 
 from board_pipeline import (
-    DEFAULT_JSON_DIR,
-    DEFAULT_PDF_DIR,
-    DEFAULT_TXT_DIR,
     AIContentExtractor,
+    get_year_paths,
     load_dataset,
     load_json_members,
     read_mapping,
@@ -45,9 +47,10 @@ def load_env_api_key() -> str:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Extract board members with Gemini")
-    parser.add_argument("--txt-dir", default=str(DEFAULT_TXT_DIR))
-    parser.add_argument("--json-dir", default=str(DEFAULT_JSON_DIR))
-    parser.add_argument("--mapping", default=str(DEFAULT_PDF_DIR / "pdf_company_mapping.csv"))
+    parser.add_argument("--year", type=int, default=None, help="Year to process (e.g. 2018). Omit for 2024 defaults.")
+    parser.add_argument("--txt-dir", default=None)
+    parser.add_argument("--json-dir", default=None)
+    parser.add_argument("--mapping", default=None)
     parser.add_argument("--api-key", default=load_env_api_key())
     parser.add_argument("--model", default="gemini-2.5-pro")
     return parser.parse_args()
@@ -58,11 +61,13 @@ def main() -> int:
     if not args.api_key:
         raise SystemExit("Missing Gemini API key. Set GEMINI_API_KEY or pass --api-key.")
 
-    txt_dir = Path(args.txt_dir)
-    json_dir = Path(args.json_dir)
-    mapping = read_mapping(Path(args.mapping))
-    dataset = load_dataset()
-    company_ids = set(dataset["id"].astype(str))
+    paths = get_year_paths(args.year)
+    txt_dir = Path(args.txt_dir) if args.txt_dir else paths["txt_dir"]
+    json_dir = Path(args.json_dir) if args.json_dir else paths["json_dir"]
+    mapping_path = Path(args.mapping) if args.mapping else paths["mapping"]
+    mapping = read_mapping(mapping_path)
+    dataset = load_dataset(paths["dataset"])
+    company_ids = set(dataset["id"].astype(str)) if not dataset.empty else set()
 
     extractor = AIContentExtractor(api_key=args.api_key, model_name=args.model)
 

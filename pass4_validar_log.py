@@ -1,4 +1,7 @@
-"""Validate the board extraction log and print a compact summary."""
+"""Validate the board extraction log and print a compact summary.
+
+Pass --year YYYY to validate a specific year's log instead of the 2024 default.
+"""
 
 from __future__ import annotations
 
@@ -7,18 +10,20 @@ from pathlib import Path
 
 import pandas as pd
 
-from board_pipeline import DEFAULT_LOG_PATH
+from board_pipeline import get_year_paths
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate board extraction log")
-    parser.add_argument("--log", default=str(DEFAULT_LOG_PATH))
+    parser.add_argument("--year", type=int, default=None, help="Year to validate (e.g. 2018). Omit for 2024 defaults.")
+    parser.add_argument("--log", default=None)
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    log_path = Path(args.log)
+    paths = get_year_paths(args.year)
+    log_path = Path(args.log) if args.log else paths["log"]
     if not log_path.exists():
         raise SystemExit(f"Log not found: {log_path}")
 

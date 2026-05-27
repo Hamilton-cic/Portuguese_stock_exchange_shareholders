@@ -1,24 +1,30 @@
-"""Extract text and tables from each PDF into TXT files."""
+"""Extract text and tables from each PDF into TXT files.
+
+Pass --year YYYY to process a specific year's subdirectory instead of the
+2024 defaults (e.g. E:\\Sociedade_dados\\2018\\pdfs).
+"""
 
 from __future__ import annotations
 
 import argparse
 from pathlib import Path
 
-from board_pipeline import DEFAULT_PDF_DIR, DEFAULT_TXT_DIR, extract_pdf_text, save_text_output, timestamp
+from board_pipeline import DEFAULT_PDF_DIR, DEFAULT_TXT_DIR, extract_pdf_text, get_year_paths, save_text_output, timestamp
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Extract PDF text into TXT files")
-    parser.add_argument("--pdf-dir", default=str(DEFAULT_PDF_DIR))
-    parser.add_argument("--output-dir", default=str(DEFAULT_TXT_DIR))
+    parser.add_argument("--year", type=int, default=None, help="Year to process (e.g. 2018). Omit for 2024 defaults.")
+    parser.add_argument("--pdf-dir", default=None)
+    parser.add_argument("--output-dir", default=None)
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    pdf_dir = Path(args.pdf_dir)
-    output_dir = Path(args.output_dir)
+    paths = get_year_paths(args.year)
+    pdf_dir = Path(args.pdf_dir) if args.pdf_dir else paths["pdf_dir"]
+    output_dir = Path(args.output_dir) if args.output_dir else paths["txt_dir"]
     output_dir.mkdir(parents=True, exist_ok=True)
 
     processed = 0
