@@ -38,7 +38,6 @@ NEW_COMPANIES: dict[str, dict] = {
             "Eduardo José Stock da Cunha",
             "Carlos António Torroaes Albuquerque",
             "Lingjiang Xu",
-            "Maria João de Sales Luis",
             "Rogério Miguel Antunes Campos Henriques",
             "António Manuel Marques de Sousa Noronha",
             "Wai Lam William Mak",
@@ -79,12 +78,12 @@ NEW_COMPANIES: dict[str, dict] = {
         "mode": "create",
         "members": [
             "Fernando Ulrich",
-            "Cristina Rios Amorim",
+            "Cristina Rios de Amorim Baptista",
             "Afonso Fuzeta Eça",
             "Ana Rosas Oliveira",
-            "António Lobo Xavier",
+            "António Bernardo Aranha da Gama Lobo Xavier",
             "Diogo Sousa Louro",
-            "Fátima Barros",
+            "Maria de Fátima Henriques da Silva Barros",
             "Francisco Artur Matos",
             "Gonzalo Gortázar Rotaeche",
             "Inês Valadas",
@@ -141,14 +140,14 @@ NEW_COMPANIES: dict[str, dict] = {
         "members": [
             "Paulo Azevedo",
             "Jacqueline Hoogerbrugge",
-            "Pedro Moreira da Silva",
+            "Pedro Miranda Moreira da Silva",
             "Tiago Moreira da Silva",
             "James Thompson",
-            "Rita Silva Domingues",
-            "António Lobo Xavier",
+            "Rita Mestre Mira da Silva Domingues",
+            "António Bernardo Aranha da Gama Lobo Xavier",
             "Jorge Alexandre Ferreira",
             "Rui Correia",
-            "Francisco Silva Domingues",
+            "Francisco José Mestre Mira da Silva Domingues",
             "Marco Marques",
             "Federico Bisio",
             "Pedro Mc Carthy da Cunha",
@@ -363,7 +362,7 @@ def main():
     step3_json_files()
     df_2024 = step4_append_new_companies(df_2024)
 
-    out = PROJECT / "dataset_2024.csv"
+    out = PROJECT / "boardmembers_2024.csv"
     df_2024.to_csv(out, index=False)
     print(f"\nSaved: {out}")
     print("\nAll done.")

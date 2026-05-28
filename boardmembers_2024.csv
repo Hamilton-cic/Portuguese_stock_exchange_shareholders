@@ -30,16 +30,16 @@ Altina de Fátima Sebastian Gonzalez Villamarin,B.COM.PORTUGUES
 José Pedro Rivera Ferreira Malaquias,B.COM.PORTUGUES
 Miguel Maya Dias Pinheiro,B.COM.PORTUGUES
 Miguel de Campos Pereira de Bragança,B.COM.PORTUGUES
-João Nuno de Oliveira Palma,B.COM.PORTUGUES
+João Nuno de Oliveira Jorge Palma,B.COM.PORTUGUES
 José Miguel Bensliman Schorcht da Silva Pessanha,B.COM.PORTUGUES
 Maria José Henriques Barreto de Matos de Campos,B.COM.PORTUGUES
 Rui Manuel da Silva Teixeira,B.COM.PORTUGUES
-Jorge Almeida Baião,banco_montepio
+Jorge Paulo Almeida e Silva Baião,banco_montepio
 Clementina Barroso,banco_montepio
 Manuel Ferreira Teixeira,banco_montepio
 Cândida Peixoto,banco_montepio
-Maria Lúcia Bica,banco_montepio
-José Carlos Mateus,banco_montepio
+Maria Lúcia Ramos Bica,banco_montepio
+José Carlos Sequeira Mateus,banco_montepio
 Eugénio Baptista,banco_montepio
 Florbela Lima,banco_montepio
 Pedro Leitão,banco_montepio
@@ -64,7 +64,7 @@ Pedro Miguel Matos Borges de Oliveira,cofina_s_g_p_s_s_a_sociedade_2024
 Domingos José Vieira de Matos,cofina_s_g_p_s_s_a_sociedade_2024
 Paulo Jorge dos Santos Fernandes,cofina_s_g_p_s_s_a_sociedade_2024
 João Manuel Matos Borges de Oliveira,cofina_s_g_p_s_s_a_sociedade_2024
-Ana Rebelo Carvalho Menéres de Mendonça,cofina_s_g_p_s_s_a_sociedade_2024
+Ana Rebelo de Carvalho Menéres de Mendonça,cofina_s_g_p_s_s_a_sociedade_2024
 Maria Benedita Andrade de Amorim Martins,CONDURIL
 Maria Luísa Andrade Amorim Martins Mendes,CONDURIL
 António Emanuel Lemos Catarino,CONDURIL
@@ -74,7 +74,7 @@ Nélson José de Sousa,CONDURIL
 Ricardo Nuno de Araújo Abreu Vaz Guimarães,CONDURIL
 António Rios de Amorim,CORTICEIRA AMORIM
 Luisa Alexandra Ramos Amorim,CORTICEIRA AMORIM
-Cristina Rios de Amorim,CORTICEIRA AMORIM
+Cristina Rios de Amorim Baptista,CORTICEIRA AMORIM
 Nuno Filipe Vilela Barroca de Oliveira,CORTICEIRA AMORIM
 Fernando José de Araújo dos Santos Almeida,CORTICEIRA AMORIM
 Juan Ginesta Viñas,CORTICEIRA AMORIM
@@ -111,9 +111,9 @@ Paulo José Marques Fernandes,CUF
 Paulo Jorge Barradas de Oliveira Rebelo,CUF
 ANTÓNIO GOMES MOTA,EDP RENOVAVEIS
 Rui Teixeira,EDP RENOVAVEIS
-Manuel Menéndez,EDP RENOVAVEIS
+Manuel Menéndez Menéndez,EDP RENOVAVEIS
 Rosa García García,EDP RENOVAVEIS
-José Félix Morgado,EDP RENOVAVEIS
+José Manuel Félix Morgado,EDP RENOVAVEIS
 Laurie Fitch,EDP RENOVAVEIS
 Ana Paula Serra,EDP RENOVAVEIS
 Gioia Ghezzi,EDP RENOVAVEIS
@@ -170,7 +170,7 @@ Maria do Rosário Mota de Oliveira Alves Moreira,FUT.CLUBE PORTO
 Paula Amorim,GALP ENERGIA-NOM
 Filipe Silva,GALP ENERGIA-NOM
 Adolfo Mesquita Nunes,GALP ENERGIA-NOM
-Maria João Carioca,GALP ENERGIA-NOM
+Maria João Borges Carioca Rodrigues,GALP ENERGIA-NOM
 Georgios Papadimitriou,GALP ENERGIA-NOM
 Ronald Doesburg,GALP ENERGIA-NOM
 Rodrigo Vilanova,GALP ENERGIA-NOM
@@ -207,12 +207,11 @@ João Pedro S?lwell Rocha e Melo,Grupo José de Mello
 Luís Eduardo Brito Freixial de Goes,Grupo José de Mello
 Rui Alexandre Pires Diniz,Grupo José de Mello
 Gonçalo Maria Guimarães José de Mello,Grupo José de Mello
-António Horta Osório,Grupo José de Mello
+António Mota de Sousa Horta Osório,Grupo José de Mello
 Luísa Deplazes de Andrade Delgado,Grupo José de Mello
 Maria Inês Lopes Caldeira,Grupo José de Mello
 Pablo Forero,Grupo José de Mello
 Raul Catarino Galamba de Oliveira,Grupo José de Mello
-António Mota de Sousa Horta Osório,Grupo José de Mello
 Mário Nuno dos Santos Ferreira,MEDIA CAPITAL
 Paulo Alexandre Francisco Gaspar,MEDIA CAPITAL
 Pedro Zañartu Gubert Morais Leitão,MEDIA CAPITAL
@@ -222,7 +221,7 @@ João Luís Baldaque da Costa Serrenho,MEDIA CAPITAL
 Paula Cristina Domingues Paz Dias Ferreira,MEDIA CAPITAL
 Alfredo José Machado Alves Pereira,MEDIA CAPITAL
 José Nuno Martins Santana,MEDIA CAPITAL
-Miguel Maria Bragança Cunha Osório,MEDIA CAPITAL
+Miguel Maria Bragança Cunha Osório Araújo,MEDIA CAPITAL
 Rui Armindo da Costa Freitas,MEDIA CAPITAL
 António Alberto Guerra Leal Teixeira,"IBERSOL,SGPS"
 António Carlos Vaz Pinto de Sousa,"IBERSOL,SGPS"
@@ -234,7 +233,7 @@ Francisco Maria Supico Pinto Balsemão,"IMPRESA,SGPS"
 Francisco Pedro Presas Pinto de Balsemão,"IMPRESA,SGPS"
 Manuel Guilherme Oliveira da Costa,"IMPRESA,SGPS"
 Maria Luísa Coutinho Ferreira Leite de Castro Anacoreta Correia,"IMPRESA,SGPS"
-Ana Filipa Mendes Magalhães Saraiva Mendes,"IMPRESA,SGPS"
+Ana Filipa Mendes de Magalhães Saraiva Mendes,"IMPRESA,SGPS"
 Catarina do Amaral Dias Duff Burnay,"IMPRESA,SGPS"
 António Mota de Sousa Horta Osório,"IMPRESA,SGPS"
 Pedro Simões de Almeida Bissaia Barreto,"IMPRESA,SGPS"
@@ -261,7 +260,7 @@ Carlos Alberto Araújo da Costa,MARTIFER
 Filipe Belo Viegas Rosa,MARTIFER
 Maria Sílvia da Fonseca Vasconcelos da Mota,MARTIFER
 Mariana Nogueira Martins,MARTIFER
-Carla Maria Araújo Gonçalves Borges Norte,MARTIFER
+Carla Maria de Araújo Gonçalves Borges Norte,MARTIFER
 Susana Isabel Barreto de Miranda Sargento,MARTIFER
 Ana Paula Chaves e Sá Ribeiro,MOTA ENGIL
 António Manuel Queirós Vasconcelos da Mota,MOTA ENGIL
@@ -323,16 +322,16 @@ Ana Pinho,REN
 Gonçalo Gil Mata,REN
 José Fay,SEMAPA
 Ricardo Pires,SEMAPA
-Vítor Paranhos Pereira,SEMAPA
-Filipa Queiroz Pereira,SEMAPA
-Mafalda Queiroz Pereira,SEMAPA
-Lua Queiroz Pereira,SEMAPA
+Vítor Paulo Paranhos Pereira,SEMAPA
+Filipa Mendes de Almeida de Queiroz Pereira,SEMAPA
+Mafalda Mendes de Almeida de Queiroz Pereira,SEMAPA
+Lua Mónica Mendes de Almeida de Queiroz Pereira,SEMAPA
 António Viana-Baptista,SEMAPA
-Paulo Lameiras Martins,SEMAPA
+Paulo José Lameiras Martins,SEMAPA
 Duarte Paulo Teixeira de Azevedo,SONAE
 Ângelo Gabriel Ribeirinho dos Santos Paupério,SONAE
 Maria Cláudia Teixeira de Azevedo,SONAE
-Carlos António Rocha Moreira da Silva,SONAE
+Carlos António da Rocha Moreira da Silva,SONAE
 Philippe Cyriel Elodie Haspeslagh,SONAE
 João Pedro Magalhães da Silva Torres Dolores,SONAE
 João Nonell Gunther Amaral,SONAE
@@ -368,7 +367,7 @@ Ana Teresa Cunha de Pinho Tavares Lehmann,THE NAVIGATOR COMP
 Hugo Alexandre Lopes Pinto,THE NAVIGATOR COMP
 Maria Isabel da Silva Marques Abranches Viegas,THE NAVIGATOR COMP
 Maria Teresa Aliu Presas,THE NAVIGATOR COMP
-Mariana Rita Antunes Marques dos Santos,THE NAVIGATOR COMP
+Mariana Rita Antunes Marques dos Santos Belmar da Costa,THE NAVIGATOR COMP
 Sandra Maria Soares Santos,THE NAVIGATOR COMP
 Vítor Paulo Paranhos Pereira,THE NAVIGATOR COMP
 José Reis da Silva Ramos,TOYOTA CAETANO
@@ -393,7 +392,6 @@ Céline Dora Judith Abecassis-Moedas,VAA VISTA ALEGRE
 Mário Godinho de Matos,VAA VISTA ALEGRE
 Luís Miguel Poiares Pessoa Maduro,VAA VISTA ALEGRE
 Tiago de Moura Pacheco Coelho Craveiro,VAA VISTA ALEGRE
-Maria João de Sales Luis,Fidelidade
 Nuno Miguel Rodrigues Terras Marques,Martifer
 Manuel Carlos de Mello Champalimaud,Grupo Champalimaud
 Duarte Palma Leal Champalimaud,Grupo Champalimaud
@@ -403,12 +401,12 @@ José Gonçalo Ferreira Maury,Grupo Champalimaud
 Mário Silva Santos,Grupo Champalimaud
 Teresa Abecasis,Grupo Champalimaud
 Fernando Ulrich,BPI
-Cristina Rios Amorim,BPI
+Cristina Rios de Amorim Baptista,BPI
 Afonso Fuzeta Eça,BPI
 Ana Rosas Oliveira,BPI
-António Lobo Xavier,BPI
+António Bernardo Aranha da Gama Lobo Xavier,BPI
 Diogo Sousa Louro,BPI
-Fátima Barros,BPI
+Maria de Fátima Henriques da Silva Barros,BPI
 Francisco Artur Matos,BPI
 Gonzalo Gortázar Rotaeche,BPI
 Inês Valadas,BPI
@@ -432,7 +430,7 @@ Maria Aline Bastos Moreira Veloso de Almeida,Banco Big
 Pedro Rogério Barata do Ouro Lameira,Banco Big
 Jorge Manuel Jacob Miguel Tainha,Banco Big
 Vitor João Tavares Maia,Banco Big
-Carlos António Rocha Moreira da Silva,Cerealis
+Carlos António da Rocha Moreira da Silva,Cerealis
 Pedro Miranda Moreira da Silva,Cerealis
 Francisco José Mestre Mira da Silva Domingues,Cerealis
 Frederico José Ortigão da Silva Pinto,Cerealis
@@ -441,14 +439,14 @@ Rita Mestre Mira da Silva Domingues,Cerealis
 Rui Manuel de Amorim Silva e Sousa,Cerealis
 Paulo Azevedo,BA Glass
 Jacqueline Hoogerbrugge,BA Glass
-Pedro Moreira da Silva,BA Glass
+Pedro Miranda Moreira da Silva,BA Glass
 Tiago Moreira da Silva,BA Glass
 James Thompson,BA Glass
-Rita Silva Domingues,BA Glass
-António Lobo Xavier,BA Glass
+Rita Mestre Mira da Silva Domingues,BA Glass
+António Bernardo Aranha da Gama Lobo Xavier,BA Glass
 Jorge Alexandre Ferreira,BA Glass
 Rui Correia,BA Glass
-Francisco Silva Domingues,BA Glass
+Francisco José Mestre Mira da Silva Domingues,BA Glass
 Marco Marques,BA Glass
 Federico Bisio,BA Glass
 Pedro Mc Carthy da Cunha,BA Glass
