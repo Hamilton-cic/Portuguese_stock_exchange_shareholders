@@ -1,0 +1,25 @@
+company,director1,director2,shared_other_boards
+Cerealis,Pedro Miranda Moreira da Silva,Francisco José Mestre Mira da Silva Domingues,BA Glass
+Millennium BCP,Jorge Manuel Baptista Magalhães Correia,Lingjiang Xu,Fidelidade
+Sonae Sierra,Maria Cláudia Teixeira de Azevedo,Ângelo Gabriel Ribeirinho dos Santos Paupério,"Sonaecom, Sonae MC, Sonae SGPS, NOS SGPS"
+Sonae MC,Maria Cláudia Teixeira de Azevedo,Ângelo Gabriel Ribeirinho dos Santos Paupério,"Sonae Sierra, Sonae SGPS, Sonaecom, NOS SGPS"
+Cofina SGPS,Pedro Miguel Matos Borges de Oliveira,Domingos José Vieira de Matos,"RAMADA, ALTRI SGPS"
+CUF,Salvador Maria Guimarães José de Mello,Rui Alexandre Pires Diniz,Grupo José de Mello
+ALTRI SGPS,Paulo Jorge dos Santos Fernandes,João Manuel Matos Borges de Oliveira,"RAMADA, Cofina SGPS"
+Media Capital,Paulo Alexandre Francisco Gaspar,Avelino da Mota Francisco Gaspar,Lusiaves
+Sonae SGPS,Ângelo Gabriel Ribeirinho dos Santos Paupério,Maria Cláudia Teixeira de Azevedo,"Sonae Sierra, Sonae MC, Sonaecom, NOS SGPS"
+Sonaecom,Ângelo Gabriel Ribeirinho dos Santos Paupério,Maria Cláudia Teixeira de Azevedo,"Sonae Sierra, Sonae MC, Sonae SGPS, NOS SGPS"
+BA Glass,Pedro Miranda Moreira da Silva,Rita Mestre Mira da Silva Domingues,Cerealis
+Fidelidade,Jorge Manuel Baptista Magalhães Correia,Rogério Miguel Antunes Campos Henriques,Luz Saúde
+EDP,Miguel Stilwell de Andrade,Rui Teixeira,EDP Renováveis
+RAMADA,João Manuel Matos Borges de Oliveira,Paulo Jorge dos Santos Fernandes,"ALTRI SGPS, Cofina SGPS"
+EDP Renováveis,Rui Teixeira,Miguel Stilwell de Andrade,EDP
+Multicare,Rogério Miguel Antunes Campos Henriques,Maria João Vellez Caroço Honório Paulino de Sales Luís,Fidelidade
+NOS SGPS,Ângelo Gabriel Ribeirinho dos Santos Paupério,João Pedro Magalhães da Silva Torres Dolores,"Sonae Sierra, Sonae MC, Sonaecom, Sonae SGPS"
+Luz Saúde,Jorge Manuel Baptista Magalhães Correia,Rogério Miguel Antunes Campos Henriques,Fidelidade
+Vista Alegre Atlantis,Nuno Miguel Rodrigues Terras Marques,Alexandra da Conceição Lopes,Visabeira
+Grupo José de Mello,Salvador Maria Guimarães José de Mello,Rui Alexandre Pires Diniz,CUF
+Lusiaves,Avelino da Mota Francisco Gaspar,Paulo Alexandre Francisco Gaspar,Media Capital
+Media Livre,Domingos José Vieira de Matos,Paulo Jorge dos Santos Fernandes,"RAMADA, ALTRI SGPS, Cofina SGPS"
+Visabeira,Nuno Miguel Rodrigues Terras Marques,Alexandra da Conceição Lopes,Vista Alegre Atlantis
+Caixa Geral de Depósitos,António José Alves Valente,Eduardo José Stock da Cunha,Fidelidade
