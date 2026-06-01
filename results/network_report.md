@@ -158,9 +158,9 @@ Director: C_random = 0.0188
 
 ---
 
-## 7. Assortativity (Correlações de Grau)
+## 7. Assortativity (Correlações de Grau) + Knn(k)
 
-### 7.1 Resultados
+### 7.1 Coeficiente de Newman r
 
 | Rede            | r (Newman) | Tipo          |
 |-----------------|-----------|---------------|
@@ -173,15 +173,74 @@ Director: C_random = 0.0188
 | Director IT 2002| 0.250     | Assortativo   |
 | Director US 1999| 0.270     | Assortativo   |
 
-### 7.2 O que aprendemos
+### 7.2 Plot Knn(k) — grau médio dos vizinhos  *(Fig C2)*
 
-Todas as redes de corporate governance são **assortativas** — hubs ligam-se a hubs. Empresas bem conectadas tendem a partilhar directores com outras empresas bem conectadas (elite corporativa). O r=0.063 da rede de empresas PT 2024 é mais fraco que os benchmarks, o que faz sentido: com apenas 83 arestas e muitos isolados, a estrutura assortativa está apenas a emergir.
+O coeficiente r é um único número; o plot Knn(k) mostra o **padrão completo**: para cada grau k, qual é o grau médio dos vizinhos desse nó?
+
+- **Knn(k) crescente** → nós de grau alto ligam-se a outros de grau alto = **assortativo**
+- **Knn(k) decrescente** → hubs ligam-se a nós periféricos = **dissortativo**
+
+> Ver **Fig C2** (`figC2_knn.png`)
+
+**Board network (r = 0.063):** Knn(k) aproximadamente plano com ligeira tendência positiva — a assortativity é fraca, o que é consistente com um r próximo de zero. As empresas mais conectadas não se ligam sistematicamente a outras mais conectadas.
+
+**Director network (r = 0.269):** Knn(k) com tendência positiva mais clara — directores com muitos colegas tendem a co-servir com outros directores igualmente ocupados. Confirma a existência de uma "elite" de directores bem conectados que circulam entre si (Sonae, ALTRI, etc.).
+
+### 7.3 O que aprendemos
+
+Todas as redes de corporate governance são **assortativas** — hubs ligam-se a hubs. O r=0.063 da rede de empresas PT 2024 é mais fraco que os benchmarks; com 83 arestas e muitos isolados, a estrutura assortativa está apenas a emergir. Na rede de directores (r=0.269) a assortativity é comparável aos benchmarks italianos e americanos.
 
 ---
 
-## 8. Distribuição de Betweenness
+## 8. Degree Distribution CCDF — Plot  *(Fig C3)*
 
-### 8.1 Resultados — Power-law b ~ k^α
+> Ver **Fig C3** (`figC3_ccdf_degree.png`) — obrigatório segundo o enunciado.
+
+### 8.1 O que mostra o plot
+
+O gráfico compara a distribuição cumulativa de grau real com a referência de Erdős–Rényi (Poisson):
+
+**Board network:** A cauda real é claramente mais pesada que a Poisson. Há empresas com grau 8–12 que seriam raras numa rede aleatória com a mesma densidade. O fit power-law na cauda (γ ≈ estimado no plot) confirma uma distribuição de cauda mais pesada, mas com N=86 a validação estatística é limitada.
+
+**Director network:** A diferença entre real e Poisson é ainda mais pronunciada. A maioria dos directores tem grau baixo (1–5 co-colegas), mas um número pequeno tem grau > 30. A Poisson concentraria todos os directores em torno de k≈12.4, o que não se verifica.
+
+### 8.2 O que aprendemos
+
+A distribuição de grau é **heterogénea** em ambas as redes — existem hubs. Numa rede aleatória todos os nós teriam graus semelhantes. A presença de hubs (directores com muitos co-colegas, empresas com muitas ligações) é a base estrutural para o small world: esses hubs servem de atalhos que reduzem o caminho médio entre nós distantes.
+
+---
+
+## 9. c(k) — Clustering vs. Grau  *(Fig C4)*
+
+> Ver **Fig C4** (`figC4_ck.png`) — completa o triângulo small-world + assortativity + clustering.
+
+### 9.1 O que mostra
+
+Para cada grau k, c(k) é o coeficiente de clustering médio dos nós com esse grau.
+
+- **c(k) ~ 1/k** → estrutura hierárquica: hubs têm baixo clustering (ligam grupos distintos), nós periféricos têm alto clustering (cliques locais)
+- **c(k) plano** → todos os nós têm clustering semelhante independentemente do grau
+
+### 9.2 Resultados
+
+**Board network:** c(k) tende a diminuir com k — empresas com muitas ligações a outras empresas têm clustering relativo mais baixo. Segue aproximadamente c ~ 1/k, sugerindo estrutura hierárquica emergente.
+
+**Director network:** c(k) muito alto e relativamente plano para k baixo, mas cai para os hubs. Directores que servem em muitas empresas têm c(k) mais baixo porque os seus vizinhos na rede pertencem a grupos diferentes que não se conhecem entre si — são exactamente os brokers inter-cluster.
+
+### 9.3 Ligação ao Small World
+
+O triângulo coerente é:
+- **Degree distribution heterogénea** (hubs existem) → Fig C3
+- **Knn(k) assortativo** (hubs ligam-se a hubs) → Fig C2
+- **c(k) elevado para nós periféricos, baixo para hubs** → Fig C4
+
+Juntos confirmam: a rede de directores tem a assinatura completa de uma rede social real com estrutura de comunidades e pontes inter-cluster.
+
+---
+
+## 10. Distribuição de Betweenness
+
+### 10.1 Resultados — Power-law b ~ k^α
 
 | Rede      | Slope α observado | Slope α do paper |
 |-----------|-------------------|-----------------|
@@ -192,11 +251,13 @@ O expoente mais alto que o paper indica que na rede portuguesa o betweenness cre
 
 ---
 
-## 9. Estrutura de Comunidades (Louvain)
+## 11. Estrutura de Comunidades (Louvain)
 
 > Adicionado além do paper original, conforme pedido da unidade curricular.
 
-### 9.1 Rede de Empresas
+> Ver **Fig C1** (`figC1_communities.png`) — visualização da rede de empresas com nós coloridos por comunidade.
+
+### 11.1 Rede de Empresas
 
 | Parâmetro           | Valor |
 |---------------------|-------|
@@ -210,15 +271,15 @@ O expoente mais alto que o paper indica que na rede portuguesa o betweenness cre
 
 | Comunidade | Tamanho | Empresas principais |
 |------------|---------|---------------------|
-| 1 | 16 | BIAL, Brisa, CUF, Galp, Navigator, Impresa, FC Porto, SEMAPA, Bondalti, Martifer, Visabeira, GLINTT, FARMINVESTE, Lactogal, Vista Alegre, Grupo José de Mello |
-| 2 | 12 | Champalimaud, Luz Saúde, Multicare, Fidelidade, BPI, CGD, BCP, CTT, Banco CTT, OK Teleseguros, Amorim, Novabase |
-| 3 | 8  | EDP, EDP Renováveis, Jerónimo Martins, Mota-Engil, BA Glass, Cerealis, Grupo Valouro, PHAROL |
-| 4 | 7  | Sonae SGPS, Sonaecom, Sonae MC, Sonae Sierra, NOS SGPS, Morais Leitão, ATRIUM BIRE SIGI |
-| 5 | 5  | ALTRI, Cofina, Ramada, Media Livre, Ibersol |
+| 1 — Industriais/Família | 16 | BIAL, Brisa, CUF, Galp, Navigator, Impresa, FC Porto, SEMAPA, Bondalti, Martifer, Visabeira, GLINTT, FARMINVESTE, Lactogal, Vista Alegre, Grupo José de Mello |
+| 2 — Financeiro/Seguros  | 12 | Champalimaud, Luz Saúde, Multicare, Fidelidade, BPI, CGD, BCP, CTT, Banco CTT, OK Teleseguros, Amorim, Novabase |
+| 3 — Utilities/Distribuição | 8 | EDP, EDP Renováveis, Jerónimo Martins, Mota-Engil, BA Glass, Cerealis, Grupo Valouro, PHAROL |
+| 4 — Universo Sonae      | 7 | Sonae SGPS, Sonaecom, Sonae MC, Sonae Sierra, NOS SGPS, Morais Leitão, ATRIUM BIRE SIGI |
+| 5 — ALTRI / Media       | 5 | ALTRI, Cofina, Ramada, Media Livre, Ibersol |
 
-> **Interpretação:** As comunidades correspondem aproximadamente aos grandes grupos de controlo familiar/estatal da economia portuguesa: (1) grupos industriais diversificados, (2) sector financeiro e segurador, (3) utilities e distribuição, (4) universo Sonae, (5) grupo Domingos Vieira de Matos.
+> **Interpretação:** As comunidades correspondem aos grandes grupos de controlo da economia portuguesa: (1) grupos industriais diversificados com laços familiares históricos, (2) sector financeiro e segurador concentrado em Lisboa, (3) utilities e grande distribuição com presença internacional, (4) universo Sonae/Belmiro de Azevedo, (5) grupo Domingos Vieira de Matos (ALTRI/Cofina). Os 26 nós isolados (singletons) reflectem empresas sem qualquer director partilhado.
 
-### 9.2 Rede de Directores
+### 11.2 Rede de Directores
 
 | Parâmetro           | Valor |
 |---------------------|-------|
@@ -230,7 +291,7 @@ Modularidade ainda mais alta — os directores estão fortemente segmentados pel
 
 ---
 
-## 10. Distribuição "Chairs" — Boards por Director
+## 12. Distribuição "Chairs" — Boards por Director
 
 | Métrica                         | PT 2024 | US 1999 | IT 2002 | IT 1986 |
 |---------------------------------|---------|---------|---------|---------|
@@ -242,7 +303,7 @@ O rácio de 1.14 é o mais baixo dos benchmarks: a maioria dos directores portug
 
 ---
 
-## 11. Lobbies
+## 13. Lobbies
 
 **Definição:** Uma empresa tem um "lobby" se pelo menos dois dos seus directores são co-directores noutra empresa em comum.
 
@@ -257,7 +318,7 @@ Portugal tem o menor percentual de lobbies dos benchmarks. **Conclusão:** A red
 
 ---
 
-## 12. Top 10 Directores Mais Conectados (por nº de boards)
+## 14. Top 10 Directores Mais Conectados (por nº de boards)
 
 | Nº Boards | Director | Empresas |
 |-----------|----------|----------|
@@ -296,7 +357,18 @@ A rede portuguesa de 2024 é **estruturalmente mais esparsa** do que os benchmar
 
 ---
 
-## 14. Figuras Produzidas
+## 15. Figuras Produzidas
+
+### Figuras de análise (novas — alta prioridade)
+
+| Figura | Ficheiro | Descrição |
+|--------|----------|-----------|
+| **Fig C1** | `figC1_communities.png` | **Rede de empresas colorida por comunidade Louvain (Q=0.704)** |
+| **Fig C2** | `figC2_knn.png` | **Knn(k) — Board + Director lado a lado com trend e slope** |
+| **Fig C3** | `figC3_ccdf_degree.png` | **CCDF grau real vs. Poisson + power-law fit nos dois networks** |
+| **Fig C4** | `figC4_ck.png` | **c(k) clustering vs. grau — Board + Director com referência 1/k** |
+
+### Figuras de visualização da rede
 
 | Figura | Ficheiro | Descrição |
 |--------|----------|-----------|
@@ -304,24 +376,23 @@ A rede portuguesa de 2024 é **estruturalmente mais esparsa** do que os benchmar
 | Fig 3 | `fig3_radial_network.png` | Layout radial — empresas anel interior, directores anel exterior |
 | Fig 4 | `fig4_bipartite_spring.png` | Bipartita estilo paper italiano (azul=empresas, verde=directores) |
 | Fig 5 | `fig5_company_projection.png` | Projecção só empresas (57 conectadas, edges por cor de peso) |
-| fig3* | `fig3_edge_weights_director.png` | Distribuição de pesos de arestas — rede de directores |
-| fig4* | `fig4_edge_weights_board.png` | Distribuição de pesos de arestas — rede de empresas |
-| fig5* | `fig5_chairs_distribution.png` | Distribuição de chairs (boards/director) vs. Poisson |
-| fig6 | `fig6_board_size_distribution.png` | Distribuição do tamanho dos conselhos |
-| fig7 | `fig7_degree_dist_director.png` | CCDF de grau — rede de directores |
-| fig8 | `fig8_degree_dist_board.png` | CCDF de grau — rede de empresas |
-| fig9 | `fig9_betweenness_dist_director.png` | Distribuição de betweenness — directores |
-| fig10 | `fig10_betweenness_dist_board.png` | Distribuição de betweenness — empresas |
-| fig11 | `fig11_bet_vs_degree_director.png` | Betweenness vs grau — directores (slope=2.50) |
-| fig12 | `fig12_bet_vs_degree_board.png` | Betweenness vs grau — empresas (slope=2.38) |
-| fig13 | `fig13_knn_director.png` | Knn(k) — rede de directores |
-| fig14 | `fig14_knn_board.png` | Knn(k) — rede de empresas |
-| fig15 | `fig15_ck_board.png` | c(k) — rede de empresas |
-| fig16 | `fig16_ck_director.png` | c(k) — rede de directores |
+
+### Figuras analíticas do pipeline (paper Battiston & Catanzaro)
+
+| Figura | Ficheiro | Descrição |
+|--------|----------|-----------|
+| — | `fig3_edge_weights_director.png` | Distribuição de pesos de arestas — rede de directores |
+| — | `fig4_edge_weights_board.png` | Distribuição de pesos de arestas — rede de empresas |
+| — | `fig5_chairs_distribution.png` | Distribuição de chairs (boards/director) vs. Poisson |
+| — | `fig6_board_size_distribution.png` | Distribuição do tamanho dos conselhos |
+| — | `fig9_betweenness_dist_director.png` | Distribuição de betweenness — directores |
+| — | `fig10_betweenness_dist_board.png` | Distribuição de betweenness — empresas |
+| — | `fig11_bet_vs_degree_director.png` | Betweenness vs grau — directores (slope=2.50) |
+| — | `fig12_bet_vs_degree_board.png` | Betweenness vs grau — empresas (slope=2.38) |
 
 ---
 
-## 15. Tabelas de Dados (CSVs)
+## 16. Tabelas de Dados (CSVs)
 
 | Ficheiro | Conteúdo |
 |----------|----------|
@@ -331,11 +402,11 @@ A rede portuguesa de 2024 é **estruturalmente mais esparsa** do que os benchmar
 
 ---
 
-## 16. Oportunidades de Melhoria (para discussão com professor)
+## 17. Oportunidades de Melhoria (para discussão com professor)
 
 1. **Comparação temporal:** O dataset é só 2024. Seria valioso comparar com 2018 (dataset disponível) para capturar o efeito das reformas de governance ao longo do tempo — qual era o chairs ratio e lobby rate antes?
 
-2. **Detecção de comunidades com visualização:** As comunidades Louvain detectadas (Q=0.704) merecem uma figura dedicada com nós coloridos por comunidade — seria o equivalente das figures de community detection dos papers de referência.
+2. **Detecção de comunidades com visualização:** Feito — Fig C1 mostra a rede colorida por comunidade Louvain (Q=0.704). Comunidades adicionais (rede de directores) poderiam ser visualizadas da mesma forma.
 
 3. **Robustez da rede:** O projecto menciona robustez (targeted vs. random attack). Seria interessante simular a remoção dos hubs (e.g., António Lobo Xavier, grupo Sonae) e ver como a componente gigante se fragmenta — relevante para governance risk.
 
